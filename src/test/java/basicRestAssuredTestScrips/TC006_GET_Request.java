@@ -1,4 +1,4 @@
-package testScrips;
+package basicRestAssuredTestScrips;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;

@@ -1,4 +1,4 @@
-package testScrips;
+package basicRestAssuredTestScrips;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
@@ -7,11 +7,9 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TC005_GET_Request {
-    //some times response body are not correct instead of header is correct.
-    //in that case we need to validation response body
+public class TC003_GET_Request {
     @Test
-    public void validationJSONResponse(){
+    public void GetHeader(){
         //specify base URI
         RestAssured.baseURI = "http://restapi.demoqa.com/utilities/weather/city";
         //Request object
@@ -22,7 +20,9 @@ public class TC005_GET_Request {
         String getBodyResponse = response.getBody().asString();
         System.out.println(getBodyResponse);
 
-        //validating response body
-        Assert.assertEquals(getBodyResponse.contains("Dhaka"),true);
+        //Capture details of header
+        String contentType = response.header("Content-Type");//capture content type of header
+        System.out.println(contentType);
+        Assert.assertEquals(contentType,"application/json");
     }
 }
